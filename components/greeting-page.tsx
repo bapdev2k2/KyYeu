@@ -108,14 +108,14 @@ export function GreetingPage({ onContinue }: GreetingPageProps) {
       </div>
 
       {/* Music Toggle */}
-      <motion.button
+      {/* <motion.button
         onClick={toggleMusic}
         className="absolute bottom-8 left-8 p-3 rounded-full bg-white/80 shadow-md hover:shadow-lg transition-shadow"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
         {isMusicPlaying ? '🔊' : '🔇'}
-      </motion.button>
+      </motion.button> */}
     </motion.div>
   );
 }

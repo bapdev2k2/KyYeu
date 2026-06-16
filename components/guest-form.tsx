@@ -14,13 +14,18 @@ export function GuestForm({ onSubmit, isLoading }: GuestFormProps) {
     class: '',
     message: '',
   });
-
+const [isSubmittingLocal, setIsSubmittingLocal] = useState(false);
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+
+  // Chặn submit nhiều lần
+  if (isSubmittingLocal) return;
 
   if (!formData.name.trim()) {
     return;
   }
+
+  setIsSubmittingLocal(true);
 
   try {
     await fetch(
@@ -34,16 +39,19 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     alert('🎉 Gửi lời chúc thành công!');
 
+    const submitData = { ...formData };
+
     setFormData({
       name: '',
       class: '',
       message: '',
     });
 
-    onSubmit(formData);
+    onSubmit(submitData);
   } catch (error) {
     console.error(error);
     alert('❌ Không thể gửi dữ liệu');
+    setIsSubmittingLocal(false); // chỉ mở lại nếu lỗi
   }
 };
 
@@ -136,7 +144,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           {/* Submit Button */}
           <motion.button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isSubmittingLocal}
             className="w-full py-3 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed"
             whileHover={{ scale: isLoading ? 1 : 1.02 }}
             whileTap={{ scale: isLoading ? 1 : 0.98 }}
@@ -144,14 +152,14 @@ const handleSubmit = async (e: React.FormEvent) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            {isLoading ? (
-              <div className="flex items-center justify-center space-x-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Đang gửi lời chúc...</span>
-              </div>
-            ) : (
-              '📬 Gửi lời chúc'
-            )}
+            {isLoading || isSubmittingLocal ? (
+  <div className="flex items-center justify-center space-x-2">
+    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+    <span>Đang gửi lời chúc...</span>
+  </div>
+) : (
+  '📬 Gửi lời chúc'
+)}
           </motion.button>
         </form>
 

@@ -10,25 +10,25 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Thư Mời Kỷ Yếu - Trường THPT Vĩnh Lộc',
+  title: 'Thư Mời Kỷ Yếu - Thanh Huyền',
   description: 'Mời bạn đến dự buổi chụp ảnh kỷ yếu lớp 12 - 28/06/2026 lúc 9:00 AM',
   generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/hihi.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/hihi.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/hihi.png',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/hihi.png',
   },
 }
 

@@ -18,7 +18,7 @@ export function GuestForm({ onSubmit, isLoading }: GuestFormProps) {
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  if (!formData.name.trim() || !formData.class.trim()) {
+  if (!formData.name.trim()) {
     return;
   }
 
@@ -103,7 +103,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             transition={{ delay: 0.4 }}
           >
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Lớp *
+              Lớp (không bắt buộc)
             </label>
             <input
               type="text"
@@ -111,7 +111,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               onChange={(e) => setFormData({ ...formData, class: e.target.value })}
               placeholder="VD: 12A1, 12A2, ..."
               className="w-full px-4 py-3 rounded-lg text-gray-900 border-2 border-purple-200 focus:border-purple-400 focus:outline-none bg-white bg-opacity-60 transition-colors"
-              required
+            
             />
           </motion.div>
 
